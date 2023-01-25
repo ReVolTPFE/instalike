@@ -1,4 +1,3 @@
-
 # Qualité de code
 
 ## TypeScript
@@ -7,7 +6,7 @@ Ajouter un nouveau script permettant la vérification du typage de votre code :
 
 ```json
 {
-    "check": "tsc --noEmit --skipLibCheck" // vérification du typage sur l'ensemble du projet
+	"check": "tsc --noEmit --skipLibCheck" // vérification du typage sur l'ensemble du projet
 }
 ```
 
@@ -29,18 +28,18 @@ Créer un fichier `".prettierrc"` à la racine de votre projet :
 
 ```json
 {
-  "endOfLine": "lf",
-  "trailingComma": "es5",
-  "arrowParens": "always",
-  "tabWidth": 2,
-  "useTabs": false,
-  "semi": true,
-  "singleQuote": true,
-  "printWidth": 120,
-  "bracketSameLine": false,
-  "bracketSpacing": true,
-  "importOrder": ["<THIRD_PARTY_MODULES>", "^@src/(.*)$", "^[./]"],
-  "importOrderSeparation": true
+	"endOfLine": "lf",
+	"trailingComma": "es5",
+	"arrowParens": "always",
+	"tabWidth": 2,
+	"useTabs": false,
+	"semi": true,
+	"singleQuote": true,
+	"printWidth": 120,
+	"bracketSameLine": false,
+	"bracketSpacing": true,
+	"importOrder": ["<THIRD_PARTY_MODULES>", "^@src/(.*)$", "^[./]"],
+	"importOrderSeparation": true
 }
 ```
 
@@ -55,7 +54,7 @@ Ajouter dans `"package.json"` un nouveau script NPM :
 
 ```json
 {
-  "format": "prettier --write src/**/*.ts{,x}", // formatage auto sur l'ensemble des fichiers du projet
+	"format": "prettier --write src/**/*.ts{,x}" // formatage auto sur l'ensemble des fichiers du projet
 }
 ```
 
@@ -67,31 +66,31 @@ Créer un fichier `".eslintrc"` à la racine de votre projet qui contiendra :
 
 ```json
 {
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:import/recommended",
-    "plugin:jsx-a11y/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "eslint-config-prettier"
-  ],
-  "settings": {
-    "react": {
-      "version": "detect"
-    },
+	"extends": [
+		"eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:react-hooks/recommended",
+		"plugin:import/recommended",
+		"plugin:jsx-a11y/recommended",
+		"plugin:@typescript-eslint/recommended",
+		"eslint-config-prettier"
+	],
+	"settings": {
+		"react": {
+			"version": "detect"
+		},
 
-    "import/resolver": {
-      "node": {
-        "paths": ["src"],
-        "extensions": [".js", ".jsx", ".ts", ".tsx"]
-      }
-    }
-  },
-  "rules": {
-    "react/react-in-jsx-scope": "off",
-    "import/named": "off"
-  }
+		"import/resolver": {
+			"node": {
+				"paths": ["src"],
+				"extensions": [".js", ".jsx", ".ts", ".tsx"]
+			}
+		}
+	},
+	"rules": {
+		"react/react-in-jsx-scope": "off",
+		"import/named": "off"
+	}
 }
 ```
 
@@ -103,14 +102,14 @@ Ensuite créer un autre fichier `".eslintignore"` au même endroit qui servira �
 node_modules/
 dist/
 .prettierrc
-.eslintrc 
+.eslintrc
 ```
 
 Ajouter dans `"package.json"` un nouveau script NPM :
 
 ```json
 {
-    "lint": "eslint . --ext .ts,.tsx", // vérification ESLint sur l'ensemble du projet 
+	"lint": "eslint . --ext .ts,.tsx" // vérification ESLint sur l'ensemble du projet
 }
 ```
 
@@ -168,6 +167,6 @@ D’une manière générale, il est préférable d’établir au début d’un p
 
 Par exemple, les guides les plus prévalents sont ceux proposés par airbnb :
 
-- **JavaScript** : [https://github.com/airbnb/javascript](https://github.com/airbnb/javascript)
+-   **JavaScript** : [https://github.com/airbnb/javascript](https://github.com/airbnb/javascript)
 
-- **React** : [https://github.com/airbnb/javascript/tree/master/react](https://github.com/airbnb/javascript/tree/master/react)
+-   **React** : [https://github.com/airbnb/javascript/tree/master/react](https://github.com/airbnb/javascript/tree/master/react)

@@ -2,7 +2,7 @@
 
 Nous allons utiliser Vite.js pour mettre en place un nouveau projet. Avant de démarrer assurez-vous d'avoir un environnement compatible.
 
-> ⚠️ Vite nécessite Node.js version 16+ (Utiliser la commande `"node -v"` pour vérifier)  
+> ⚠️ Vite nécessite Node.js version 16+ (Utiliser la commande `"node -v"` pour vérifier)
 
 [https://vitejs.dev](https://vitejs.dev)
 
