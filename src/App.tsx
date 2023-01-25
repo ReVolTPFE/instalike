@@ -1,10 +1,17 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import './App.css';
 import reactLogo from './assets/react.svg';
+import instalikeApi from './instalikeApi';
 
 function App() {
 	const [count, setCount] = useState(0);
+
+	useEffect(() => {
+		instalikeApi.auth.login({ email: 'arnaud.steiner@etu.unistra.fr', password: 'DWEB2023' }).then(({ data }) => {
+			console.log(data.accessToken);
+		});
+	}, []);
 
 	return (
 		<div className="App">
