@@ -6,6 +6,7 @@ import commonEn from './assets/locales/en/common.json';
 import commonFr from './assets/locales/fr/common.json';
 import Language from './enums/Language';
 
+// eslint-disable-next-line import/no-named-as-default-member
 i18n.use(initReactI18next)
 	.use(LanguageDetector)
 	.init({

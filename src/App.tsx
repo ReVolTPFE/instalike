@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import './App.css';
 import Language from './enums/Language';
 import './i18n';
 import instalikeApi from './instalikeApi';
 
 function App() {
 	const { t, i18n } = useTranslation();
-
-	const [count, setCount] = useState(0);
 
 	useEffect(() => {
 		instalikeApi.auth.login({ email: 'arnaud.steiner@etu.unistra.fr', password: 'DWEB2023' }).then(({ data }) => {
@@ -19,6 +16,7 @@ function App() {
 
 	return (
 		<div className="App">
+			<h1 className="text-3xl font-bold underline">Hello world!</h1>
 			<p>{t('actions.follow')}</p>
 			<button
 				onClick={() => {
