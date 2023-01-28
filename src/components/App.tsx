@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Language from './enums/Language';
-import './i18n';
-import instalikeApi from './instalikeApi';
+import Language from '../enums/Language';
+import '../i18n';
+import instalikeApi from '../instalikeApi';
 
 function App() {
 	const { t, i18n } = useTranslation();
