@@ -1,6 +1,6 @@
 import { InstalikeApi } from '@jmetterrothan/instalike';
 import { Action, AnyAction } from 'redux';
-import { ThunkAction } from 'redux-thunk';
+import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 
 import instalikeApi from '../instalikeApi';
 import { RootState } from './store';
