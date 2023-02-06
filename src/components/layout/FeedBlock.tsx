@@ -46,8 +46,8 @@ function FeedBlock() {
 	];
 
 	return (
-		<main className="w-full px-4 md:mx-auto md:w-2/3 lg:w-1/2 py-8">
-			<section className="">
+		<>
+			<section>
 				{data.map((post) => (
 					<PostCard
 						key={post.id}
@@ -64,7 +64,7 @@ function FeedBlock() {
 			</section>
 
 			<h2 className="text-xl font-semibold text-center text-gray-600 mt-8">You are all caught up!</h2>
-		</main>
+		</>
 	);
 }
 

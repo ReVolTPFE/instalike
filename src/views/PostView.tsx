@@ -1,5 +1,9 @@
+import { useParams } from 'react-router';
+
 function PostView() {
-	return <>Post</>;
+	const params = useParams();
+
+	return <>Post {params.id}</>;
 }
 
 export default PostView;
