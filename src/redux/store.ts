@@ -3,8 +3,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
 import instalikeApi from '../instalikeApi';
+import authReducer from './auth/reducer';
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+	auth: authReducer,
+});
 
 const middleware: Middleware[] = [];
 
