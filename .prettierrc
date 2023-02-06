@@ -9,6 +9,17 @@
 	"printWidth": 120,
 	"bracketSameLine": false,
 	"bracketSpacing": true,
-	"importOrder": ["<THIRD_PARTY_MODULES>", "^@src/(.*)$", "^[./]"],
+	"importOrder": [
+		"<THIRD_PARTY_MODULES>",
+		"/views/(.*)$",
+		"/redux/(.*)$",
+		"/components/(.*)$",
+		"/hooks/(.*)$",
+		"/enums/(.*)$",
+		"/types/(.*)$",
+		"/assets/(.*)$",
+		"^[./]"
+	],
+
 	"importOrderSeparation": true
 }

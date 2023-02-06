@@ -1,20 +1,14 @@
-import { Navigate, Outlet } from 'react-router';
+import { Navigate, Outlet } from 'react-router-dom';
 
-import useAppSelector from '../hooks/useAppSelector';
-import { RootState } from '../redux/store';
-
-const selectIsAuth = (state: RootState) => state.auth.isAuth;
-
-const useIsAuth = () => {
-	return useAppSelector(selectIsAuth);
-};
+import useIsAuth from '../hooks/useIsAuth';
 
 const AuthGuard = () => {
 	const isAuth = useIsAuth();
 
 	if (!isAuth) {
-		return <Navigate to="/login" />;
+		return <Navigate to="login" />;
 	}
+
 	return <Outlet />;
 };
 

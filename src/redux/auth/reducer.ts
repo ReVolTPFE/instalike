@@ -1,5 +1,6 @@
 import { Reducer } from 'redux';
 
+import { hasAccessToken } from '../../instalikeApi';
 import { AuthAction, LOGIN, LOGOUT } from './actions';
 
 type AuthState = {
@@ -7,15 +8,23 @@ type AuthState = {
 };
 
 const initialState: AuthState = {
-	isAuth: false,
+	isAuth: hasAccessToken(),
 };
 
 const authReducer: Reducer<AuthState, AuthAction> = (state = initialState, action) => {
 	switch (action.type) {
 		case LOGIN:
-			return { ...state, isAuth: true };
+			return {
+				...state,
+				isAuth: true,
+			};
+
 		case LOGOUT:
-			return { ...state, isAuth: false };
+			return {
+				...state,
+				isAuth: false,
+			};
+
 		default:
 			return state;
 	}

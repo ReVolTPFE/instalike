@@ -1,6 +1,8 @@
 import { createInstalikeApi } from '@jmetterrothan/instalike';
 import axios from 'axios';
 
+export const ACCESS_TOKEN_KEY = 'ACCESS_TOKEN';
+
 const instalikeApi = createInstalikeApi(
 	axios.create({
 		baseURL: import.meta.env.VITE_API_ENDPOINT,
@@ -10,5 +12,7 @@ const instalikeApi = createInstalikeApi(
 		},
 	})
 );
+
+export const hasAccessToken = () => window.localStorage.getItem(ACCESS_TOKEN_KEY) !== null;
 
 export default instalikeApi;
