@@ -1,5 +1,18 @@
 {
 	"actions": {
-		"follow": "Follow"
+		"follow": "Follow",
+		"login": "Login"
+	},
+	"form": {
+		"email": "Email",
+		"password": "Password",
+		"cancel": "Cancel",
+		"submit": "Submit",
+		"postDescription": "Write a caption...",
+		"postLocalisation": "Localisation",
+		"postCommentingStatus": "Turn off commenting"
+	},
+	"title": {
+		"postForm": "Create new post"
 	}
 }

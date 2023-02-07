@@ -1,5 +1,18 @@
 {
 	"actions": {
-		"follow": "Suivre"
+		"follow": "Suivre",
+		"login": "Connexion"
+	},
+	"form": {
+		"email": "Email",
+		"password": "Mot de passe",
+		"cancel": "Annuler",
+		"submit": "Valider",
+		"postDescription": "Ecrivez une description...",
+		"postLocalisation": "Localisation",
+		"postCommentingStatus": "Désactiver les commentaires"
+	},
+	"title": {
+		"postForm": "Créer un nouveau post"
 	}
 }
