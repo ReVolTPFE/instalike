@@ -18,6 +18,8 @@ const useAuthInterceptors = () => {
 						dispatch(logoutAsync());
 					}
 				}
+
+				return Promise.reject(e);
 			}
 		);
 

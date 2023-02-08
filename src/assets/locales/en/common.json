@@ -14,5 +14,8 @@
 	},
 	"title": {
 		"postForm": "Create new post"
+	},
+	"errors": {
+		"login": "You entered invalid credentials"
 	}
 }
