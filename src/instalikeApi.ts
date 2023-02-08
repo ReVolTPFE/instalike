@@ -13,6 +13,22 @@ const instalikeApi = createInstalikeApi(
 	})
 );
 
+instalikeApi.driver.interceptors.request.use((config) => {
+	const accessToken = window.localStorage.getItem(ACCESS_TOKEN_KEY);
+
+	if (accessToken !== null) {
+		return {
+			...config,
+			headers: {
+				...config.headers,
+				Authorization: `Bearer ${accessToken}`,
+			},
+		};
+	}
+
+	return config;
+});
+
 export const hasAccessToken = () => window.localStorage.getItem(ACCESS_TOKEN_KEY) !== null;
 
 export default instalikeApi;

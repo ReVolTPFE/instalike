@@ -14,17 +14,15 @@ function App() {
 	useAuthInterceptors();
 
 	return (
-		<>
-			<Routes>
-				<Route path="/login" element={<LoginView />} />
-				<Route element={<AuthGuard />}>
-					<Route path="/feed" element={<FeedView />} />
-					<Route path="/discover" element={<DiscoverView />} />
-					<Route path="/post/:id" element={<PostView />} />
-				</Route>
-				<Route path="*" element={<Navigate to="/feed" />} />
-			</Routes>
-		</>
+		<Routes>
+			<Route path="/login" element={<LoginView />} />
+			<Route element={<AuthGuard />}>
+				<Route path="/feed" element={<FeedView />} />
+				<Route path="/discover" element={<DiscoverView />} />
+				<Route path="/post/:id" element={<PostView />} />
+			</Route>
+			<Route path="*" element={<Navigate to="/feed" />} />
+		</Routes>
 	);
 }
 

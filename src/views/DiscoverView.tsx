@@ -1,15 +1,14 @@
-import { useEffect } from 'react';
+import DiscoverBlock from '../components/layout/DiscoverBlock';
+import Header from '../components/layout/Header';
 
-import instalikeApi from '../instalikeApi';
+function DiscoverView() {
+	return (
+		<>
+			<Header />
 
-const DiscoverView = () => {
-	useEffect(() => {
-		instalikeApi.posts.fetch({ cursor: null });
-		instalikeApi.users.me.fetch();
-		instalikeApi.users.find(1).fetch();
-	}, []);
-
-	return <>Discover</>;
-};
+			<DiscoverBlock />
+		</>
+	);
+}
 
 export default DiscoverView;
