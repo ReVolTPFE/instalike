@@ -3,7 +3,7 @@ export type PostCardType = {
 	description?: string;
 	imgUrl: string;
 	username: string;
-	userImgUrl: string;
+	userImgUrl?: string;
 	location?: string;
 	commentStatus?: boolean;
 	date?: string;
