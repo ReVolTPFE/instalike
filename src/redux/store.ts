@@ -5,10 +5,12 @@ import thunk from 'redux-thunk';
 import instalikeApi from '../instalikeApi';
 import authReducer from './auth/reducer';
 import feedReducer from './feed/reducer';
+import userSuggestionsReducer from './user/reducer';
 
 const rootReducer = combineReducers({
 	auth: authReducer,
 	feed: feedReducer,
+	userSuggestions: userSuggestionsReducer,
 });
 
 const middleware: Middleware[] = [];
