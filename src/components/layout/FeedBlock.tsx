@@ -28,10 +28,11 @@ function FeedBlock() {
 								id={post.id}
 								description={post.caption}
 								imgUrl={post.resources[0].src}
-								username={post.owner.fullName}
+								fullName={post.owner.fullName}
 								location={post.location}
 								commentStatus={post.hasCommentsDisabled}
 								date={post.updatedAt}
+								liked={post.viewerHasLiked}
 							/>
 						);
 					})}
