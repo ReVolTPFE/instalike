@@ -1,6 +1,7 @@
+import moment from 'moment';
+
 import { PostCardType } from '../../types/PostCardType';
 
-// explain me that code
 function PostCard({
 	id,
 	description = '',
@@ -11,6 +12,8 @@ function PostCard({
 	date,
 	liked,
 }: PostCardType) {
+	const formattedDate = moment(date).utc().format('DD-MM-YYYY');
+
 	return (
 		<div className="my-8 rounded-xl border border-gray-300" id={`post-${id}`}>
 			<div className="flex flex-row justify-between items-center py-4 px-6">
@@ -18,12 +21,11 @@ function PostCard({
 					<img className="w-14 h-14 rounded-full mr-4" src="img/avatar.webp" alt="" />
 					<div>
 						<h2 className="text-lg font-bold">{fullName}</h2>
-						{/* <p>
-							{location !== ''
-								? `<i className="fa-solid fa-location-dot"></i> ${location}, ${date}`
-								: `${date}`}
-						</p> */}
-						<p className="text-gray-600">{`${location}, ${date}`}</p>
+						<p>
+							{location !== '' ? <i className="fa-solid fa-location-dot"></i> : ''}
+							{location !== '' ? ` ${location}, ` : ''}
+							{formattedDate}
+						</p>
 					</div>
 				</div>
 
