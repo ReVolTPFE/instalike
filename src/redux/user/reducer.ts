@@ -1,7 +1,12 @@
 import { Instalike } from '@jmetterrothan/instalike';
 import { Reducer } from 'redux';
 
-import { UserSuggestionsAction, USER_SUGGESTIONS, USER_SUGGESTIONS_ADD_CONTACT } from './actions';
+import {
+	UserSuggestionsAction,
+	USER_SUGGESTIONS,
+	USER_SUGGESTIONS_ADD_CONTACT,
+	USER_SUGGESTIONS_REMOVE_CONTACT,
+} from './actions';
 
 type UserSuggestionsState = {
 	users?: Instalike.User[];
@@ -21,6 +26,11 @@ const userSuggestionsReducer: Reducer<UserSuggestionsState, UserSuggestionsActio
 				users: action.payload,
 			};
 		case USER_SUGGESTIONS_ADD_CONTACT:
+			return {
+				...state,
+				user: action.payload,
+			};
+		case USER_SUGGESTIONS_REMOVE_CONTACT:
 			return {
 				...state,
 				user: action.payload,

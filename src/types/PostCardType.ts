@@ -7,4 +7,5 @@ export type PostCardType = {
 	commentStatus?: boolean;
 	date?: string;
 	liked: boolean;
+	userId: number;
 };

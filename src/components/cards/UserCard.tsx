@@ -12,8 +12,7 @@ function UserCard({ id, suggestionId = 0, fullName, onAddFriend }: UserCardProps
 	const dispatch = useAppDispatch();
 
 	function handleClick() {
-		const a = dispatch(fetchPostUserSuggestionsAddContactAsync(id));
-		console.log(a);
+		dispatch(fetchPostUserSuggestionsAddContactAsync(id));
 		onAddFriend();
 	}
 

@@ -33,6 +33,7 @@ function FeedBlock() {
 								commentStatus={post.hasCommentsDisabled}
 								date={post.updatedAt}
 								liked={post.viewerHasLiked}
+								userId={post.owner.id}
 							/>
 						);
 					})}

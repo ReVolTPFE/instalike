@@ -1,4 +1,10 @@
 import moment from 'moment';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import { fetchPostUserSuggestionsRemoveContactAsync } from '../../redux/user/thunks';
+
+import useAppDispatch from '../../hooks/useAppDispatch';
 
 import { PostCardType } from '../../types/PostCardType';
 
@@ -11,8 +17,25 @@ function PostCard({
 	commentStatus = true,
 	date,
 	liked,
+	userId,
 }: PostCardType) {
 	const formattedDate = moment(date).utc().format('DD-MM-YYYY');
+
+	const [moreInfo, setMoreInfo] = useState(false);
+
+	function toggleMoreInfo() {
+		setMoreInfo(!moreInfo);
+	}
+
+	const dispatch = useAppDispatch();
+
+	function onUnfollow() {
+		dispatch(fetchPostUserSuggestionsRemoveContactAsync(userId));
+	}
+
+	function copyPostLink() {
+		navigator.clipboard.writeText('http://127.0.0.1:5173/post/' + id);
+	}
 
 	return (
 		<div className="my-8 rounded-xl border border-gray-300" id={`post-${id}`}>
@@ -29,8 +52,35 @@ function PostCard({
 					</div>
 				</div>
 
-				<button className="py-1 px-4 hover:bg-gray-200 rounded">
-					<i className="text-xl fa-solid fa-ellipsis-vertical"></i>
+				<button onClick={toggleMoreInfo} className="py-1 px-4 hover:bg-gray-200 rounded relative">
+					<i className="text-xl fa-solid fa-ellipsis-vertical">
+						<div
+							className={`bg-white border border-gray-200 rounded-md p-2 absolute right-0 mt-4 ${
+								moreInfo ? '' : 'hidden'
+							}`}
+						>
+							<Link
+								onClick={onUnfollow}
+								to="#"
+								className="font-sans font-semibold block text-sm my-1 p-1 rounded cursor-pointer hover:bg-red-200 text-red-500"
+							>
+								Unfollow
+							</Link>
+							<Link
+								to="/post/id"
+								className="font-sans font-semibold block text-sm my-1 p-1 rounded cursor-pointer hover:bg-gray-200"
+							>
+								See publication
+							</Link>
+							<Link
+								onClick={copyPostLink}
+								to="#"
+								className="font-sans font-semibold block text-sm my-1 p-1 rounded cursor-pointer hover:bg-gray-200"
+							>
+								Copy link
+							</Link>
+						</div>
+					</i>
 				</button>
 			</div>
 
