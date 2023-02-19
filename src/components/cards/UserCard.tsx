@@ -26,7 +26,7 @@ function UserCard({ id, suggestionId = 0, fullName, onAddFriend }: UserCardProps
 			<div className="relative">
 				<img className="rounded-full w-full" src="img/avatar.webp" alt="" />
 				<button onClick={handleClick}>
-					<i className="fa-solid fa-plus absolute bottom-0 right-0 text-lg hover:bg-gray-200 py-1 px-2 text-center rounded-full bg-white cursor-pointer"></i>
+					<i className="fa-solid fa-plus absolute bottom-0 right-0 text-lg hover:bg-gray-200 py-1 px-2 text-center rounded-full bg-white cursor-pointer dark-mode-plus"></i>
 				</button>
 			</div>
 

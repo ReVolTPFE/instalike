@@ -6,7 +6,7 @@ function FeedView() {
 	return (
 		<>
 			<Header />
-			<main className="w-full px-4 md:mx-auto md:w-2/3 lg:w-1/2 py-8">
+			<main className="w-full px-4 md:mx-auto md:w-2/3 lg:w-1/2 py-8 bg-white">
 				<SuggestionBlock />
 
 				<FeedBlock />

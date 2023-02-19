@@ -23,6 +23,14 @@ function Header() {
 		dispatch(logoutAsync());
 	};
 
+	function switchColorMode() {
+		const bodyElements: HTMLElement | any = document.getElementsByClassName('body');
+
+		Object.values(bodyElements).forEach((element: HTMLElement | any) => {
+			element.classList.toggle('dark-mode');
+		});
+	}
+
 	return (
 		<>
 			<header className="w-full h-20 fixed top-0 left-0 flex flex-row justify-between items-center py-4 px-4 md:px-16 border-b border-b-gray-300 bg-white z-10">
@@ -59,7 +67,7 @@ function Header() {
 							</div>
 						</i>
 					</button>
-					<button className="mx-4">
+					<button onClick={switchColorMode} className="mx-4">
 						<i className="text-2xl hover:bg-gray-200 py-1 px-2 text-center rounded fa-regular fa-moon"></i>
 					</button>
 				</nav>

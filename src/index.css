@@ -6,3 +6,44 @@ main {
 	margin-top: 80px;
 	margin-bottom: 64px;
 }
+
+.dark-mode .bg-white {
+	background-color: rgb(41, 41, 41);
+}
+
+.dark-mode .dark-mode-plus {
+	background-color: #585858;
+}
+
+.dark-mode .dark-mode-plus:hover,
+.dark-mode .hover\:bg-gray-200:hover {
+	background-color: #9b9b9b;
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6,
+.dark-mode p,
+.dark-mode span,
+.dark-mode i,
+.dark-mode a,
+.dark-mode b,
+.dark-mode input,
+.dark-mode div {
+	color: white;
+}
+
+.dark-mode .login-form input {
+	color: black;
+}
+
+.dark-mode .dark-mode-like-btn {
+	background-color: #9b9b9b;
+}
+
+.dark-mode .dark-mode-like-btn .text-red-500 {
+	color: #ef4444 !important;
+}
