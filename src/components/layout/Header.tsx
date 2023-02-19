@@ -1,6 +1,23 @@
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { logoutAsync } from '../../redux/auth/thunks';
+
 function Header() {
+	const [moreInfo, setMoreInfo] = useState(false);
+
+	function toggleMoreInfo() {
+		setMoreInfo(!moreInfo);
+	}
+
+	const dispatch = useDispatch();
+
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		dispatch(logoutAsync());
+	};
+
 	return (
 		<>
 			<header className="w-full h-20 fixed top-0 left-0 flex flex-row justify-between items-center py-4 px-4 md:px-16 border-b border-b-gray-300 bg-white z-10">
@@ -20,8 +37,22 @@ function Header() {
 					<button className="hidden md:inline-block mx-4">
 						<i className="text-2xl hover:bg-gray-200 py-1 px-2 text-center rounded fa-solid fa-plus"></i>
 					</button>
-					<button className="hidden md:inline-block mx-4">
-						<i className="text-2xl hover:bg-gray-200 py-1 px-2 text-center rounded fa-regular fa-circle-user"></i>
+					<button onClick={toggleMoreInfo} className="hidden md:inline-block mx-4 relative">
+						<i className="text-2xl hover:bg-gray-200 py-1 px-2 text-center rounded fa-regular fa-circle-user">
+							<div
+								className={`bg-white border border-gray-200 rounded-md p-2 absolute right-0 mt-4 ${
+									moreInfo ? '' : 'hidden'
+								}`}
+							>
+								<Link
+									onClick={handleSubmit}
+									to="#"
+									className="font-sans font-semibold block text-sm my-1 p-1 rounded cursor-pointer hover:bg-red-200 text-red-500"
+								>
+									Logout
+								</Link>
+							</div>
+						</i>
 					</button>
 					<button className="mx-4">
 						<i className="text-2xl hover:bg-gray-200 py-1 px-2 text-center rounded fa-regular fa-moon"></i>
