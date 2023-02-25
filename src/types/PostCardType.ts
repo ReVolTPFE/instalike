@@ -8,4 +8,6 @@ export type PostCardType = {
 	date?: string;
 	liked: boolean;
 	userId: number;
+	likesCount: number;
+	commentsCount: number;
 };

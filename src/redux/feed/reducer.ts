@@ -7,11 +7,11 @@ type FeedState = {
 	posts: Instalike.Post[];
 };
 
-const initalState: FeedState = {
+const initialState: FeedState = {
 	posts: [],
 };
 
-const feedReducer: Reducer<FeedState, FeedAction> = (state = initalState, action) => {
+const feedReducer: Reducer<FeedState, FeedAction> = (state = initialState, action) => {
 	switch (action.type) {
 		case FEED:
 			return {

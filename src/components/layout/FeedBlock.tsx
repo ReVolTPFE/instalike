@@ -2,6 +2,7 @@ import { Instalike } from '@jmetterrothan/instalike';
 import { useEffect } from 'react';
 
 import { fetchFeedUserAsync } from '../../redux/feed/thunks';
+import { fetchPostLikeAsync, fetchPostUnlikeAsync } from '../../redux/post/thunks';
 
 import useAppDispatch from '../../hooks/useAppDispatch';
 import useFeed from '../../hooks/useFeed';
@@ -17,8 +18,18 @@ function FeedBlock() {
 
 	const posts = useFeed();
 
+	function a() {
+		dispatch(fetchPostLikeAsync(41));
+	}
+
+	function aa() {
+		dispatch(fetchPostUnlikeAsync(41));
+	}
+
 	return (
 		<>
+			<p onClick={a}>like</p>
+			<p onClick={aa}>unlike</p>
 			<section>
 				{posts &&
 					posts.map((post: Instalike.Post) => {
@@ -34,6 +45,8 @@ function FeedBlock() {
 								date={post.updatedAt}
 								liked={post.viewerHasLiked}
 								userId={post.owner.id}
+								likesCount={post.likesCount}
+								commentsCount={post.commentsCount}
 							/>
 						);
 					})}

@@ -19,6 +19,8 @@ function PostCard({
 	date,
 	liked,
 	userId,
+	likesCount,
+	commentsCount,
 }: PostCardType) {
 	const { t } = useTranslation();
 
@@ -96,12 +98,12 @@ function PostCard({
 				<div>
 					<button className="mx-4 mb-4 bg-gray-200 rounded-full py-2 px-4 dark-mode-like-btn">
 						<i className={`fa-solid fa-heart ${liked ? 'text-red-500' : ''}`}>
-							<span className={`ml-2 ${liked ? 'text-red-500' : ''}`}>2</span>
+							<span className={`ml-2 ${liked ? 'text-red-500' : ''}`}>{likesCount}</span>
 						</i>
 					</button>
 					<button className="mb-4 py-2 px-4">
 						<i className="fa-regular fa-comment-dots">
-							<span className="ml-2">1</span>
+							<span className="ml-2">{commentsCount}</span>
 						</i>
 					</button>
 				</div>

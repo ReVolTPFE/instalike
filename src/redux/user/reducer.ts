@@ -13,12 +13,12 @@ type UserSuggestionsState = {
 	user?: Instalike.User | undefined;
 };
 
-const initalState: UserSuggestionsState = {
+const initialState: UserSuggestionsState = {
 	users: [],
 	user: undefined,
 };
 
-const userSuggestionsReducer: Reducer<UserSuggestionsState, UserSuggestionsAction> = (state = initalState, action) => {
+const userSuggestionsReducer: Reducer<UserSuggestionsState, UserSuggestionsAction> = (state = initialState, action) => {
 	switch (action.type) {
 		case USER_SUGGESTIONS:
 			return {
