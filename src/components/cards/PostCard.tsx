@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
+import { fetchPostLikeAsync, fetchPostUnlikeAsync } from '../../redux/post/thunks';
 import { fetchPostUserSuggestionsRemoveContactAsync } from '../../redux/user/thunks';
 
 import useAppDispatch from '../../hooks/useAppDispatch';
@@ -27,6 +28,8 @@ function PostCard({
 	const formattedDate = moment(date).utc().format('DD-MM-YYYY');
 
 	const [moreInfo, setMoreInfo] = useState(false);
+	const [isLiked, setIsLiked] = useState(liked);
+	const [likeNumber, setLikeNumber] = useState(likesCount);
 
 	function toggleMoreInfo() {
 		setMoreInfo(!moreInfo);
@@ -40,6 +43,18 @@ function PostCard({
 
 	function copyPostLink() {
 		navigator.clipboard.writeText('http://127.0.0.1:5173/post/' + id);
+	}
+
+	function likePost() {
+		if (isLiked !== true) {
+			dispatch(fetchPostLikeAsync(id));
+			setIsLiked(true);
+			setLikeNumber(likeNumber + 1);
+		} else {
+			dispatch(fetchPostUnlikeAsync(id));
+			setIsLiked(false);
+			setLikeNumber(likeNumber - 1);
+		}
 	}
 
 	return (
@@ -90,15 +105,23 @@ function PostCard({
 			</div>
 
 			{/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
-			<img className="w-full h-full object-cover" src={imgUrl} alt="Post photo" />
+			<img
+				onDoubleClick={likePost}
+				className="cursor-pointer w-full h-full object-cover"
+				src={imgUrl}
+				alt="Post photo"
+			/>
 
 			<div>
 				<p className="m-4 text-gray-500">{description}</p>
 
 				<div>
-					<button className="mx-4 mb-4 bg-gray-200 rounded-full py-2 px-4 dark-mode-like-btn">
-						<i className={`fa-solid fa-heart ${liked ? 'text-red-500' : ''}`}>
-							<span className={`ml-2 ${liked ? 'text-red-500' : ''}`}>{likesCount}</span>
+					<button
+						onClick={likePost}
+						className="mx-4 mb-4 bg-gray-200 rounded-full py-2 px-4 dark-mode-like-btn"
+					>
+						<i className={`fa-solid fa-heart ${isLiked ? 'text-red-500' : ''}`}>
+							<span className={`ml-2 ${isLiked ? 'text-red-500' : ''}`}>{likeNumber}</span>
 						</i>
 					</button>
 					<button className="mb-4 py-2 px-4">
