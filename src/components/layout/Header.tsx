@@ -119,6 +119,21 @@ function Header() {
 								}`}
 							>
 								<Link
+									onClick={() => {
+										if (language == Language.FR) {
+											setLanguage(Language.EN);
+											i18n.changeLanguage(Language.EN);
+										} else if (language == Language.EN) {
+											setLanguage(Language.FR);
+											i18n.changeLanguage(Language.FR);
+										}
+									}}
+									to="#"
+									className="font-sans font-semibold block text-sm my-1 p-1 rounded cursor-pointer hover:bg-gray-200 text-black"
+								>
+									{t('actions.changeLanguage')}
+								</Link>
+								<Link
 									onClick={logout}
 									to="#"
 									className="font-sans font-semibold block text-sm my-1 p-1 rounded cursor-pointer hover:bg-red-200 text-red-500"
