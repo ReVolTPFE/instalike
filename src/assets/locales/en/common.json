@@ -1,7 +1,12 @@
 {
 	"actions": {
 		"follow": "Follow",
-		"login": "Login"
+		"unfollow": "Unfollow",
+		"login": "Login",
+		"logout": "Logout",
+		"changeLanguage": "Basculer vers Français",
+		"seePost": "See publication",
+		"copyLink": "Copy link"
 	},
 	"form": {
 		"email": "Email",

@@ -1,5 +1,6 @@
 import moment from 'moment';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 import { fetchPostUserSuggestionsRemoveContactAsync } from '../../redux/user/thunks';
@@ -19,6 +20,8 @@ function PostCard({
 	liked,
 	userId,
 }: PostCardType) {
+	const { t } = useTranslation();
+
 	const formattedDate = moment(date).utc().format('DD-MM-YYYY');
 
 	const [moreInfo, setMoreInfo] = useState(false);
@@ -64,20 +67,20 @@ function PostCard({
 								to="#"
 								className="font-sans font-semibold block text-sm my-1 p-1 rounded cursor-pointer hover:bg-red-200 text-red-500"
 							>
-								Unfollow
+								{t('actions.unfollow')}
 							</Link>
 							<Link
 								to="/post/id"
 								className="font-sans font-semibold block text-sm my-1 p-1 rounded cursor-pointer hover:bg-gray-200"
 							>
-								See publication
+								{t('actions.seePost')}
 							</Link>
 							<Link
 								onClick={copyPostLink}
 								to="#"
 								className="font-sans font-semibold block text-sm my-1 p-1 rounded cursor-pointer hover:bg-gray-200"
 							>
-								Copy link
+								{t('actions.copyLink')}
 							</Link>
 						</div>
 					</i>

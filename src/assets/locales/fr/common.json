@@ -1,7 +1,12 @@
 {
 	"actions": {
 		"follow": "Suivre",
-		"login": "Connexion"
+		"unfollow": "Ne plus suivre",
+		"login": "Connexion",
+		"logout": "Déconnexion",
+		"changeLanguage": "Go to English",
+		"seePost": "Voir la publication",
+		"copyLink": "Copier le lien"
 	},
 	"form": {
 		"email": "Email",

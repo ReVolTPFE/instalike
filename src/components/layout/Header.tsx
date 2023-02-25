@@ -1,11 +1,19 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { logoutAsync } from '../../redux/auth/thunks';
 
+import Language from '../../enums/Language';
+
+import '../../i18n';
+
 function Header() {
+	const { t, i18n } = useTranslation();
+
 	const [moreInfo, setMoreInfo] = useState(false);
+	const [language, setLanguage] = useState(Language.FR);
 	const [moreInfoMobile, setMoreInfoMobile] = useState(false);
 
 	function toggleMoreInfo() {
@@ -58,11 +66,26 @@ function Header() {
 								}`}
 							>
 								<Link
+									onClick={() => {
+										if (language == Language.FR) {
+											setLanguage(Language.EN);
+											i18n.changeLanguage(Language.EN);
+										} else if (language == Language.EN) {
+											setLanguage(Language.FR);
+											i18n.changeLanguage(Language.FR);
+										}
+									}}
+									to="#"
+									className="font-sans font-semibold block text-sm my-1 p-1 rounded cursor-pointer hover:bg-gray-200 text-black"
+								>
+									{t('actions.changeLanguage')}
+								</Link>
+								<Link
 									onClick={logout}
 									to="#"
 									className="font-sans font-semibold block text-sm my-1 p-1 rounded cursor-pointer hover:bg-red-200 text-red-500"
 								>
-									Logout
+									{t('actions.logout')}
 								</Link>
 							</div>
 						</i>
