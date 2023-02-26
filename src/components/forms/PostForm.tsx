@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import '../../i18n';
@@ -5,14 +6,30 @@ import '../../i18n';
 function PostForm() {
 	const { t } = useTranslation();
 
+	const [previewImage, setPreviewImage] = useState('');
+
+	function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
+		const selectedFile = e.target.files?.[0];
+
+		if (selectedFile) {
+			const objectUrl = URL.createObjectURL(selectedFile);
+			setPreviewImage(objectUrl);
+			console.log(previewImage);
+		}
+	}
+
 	return (
 		<div className="rounded bg-white p-4 border border-red-500">
 			<h2 className="text-center text-xl font-bold">{t('title.postForm')}</h2>
 
 			<form action="" method="post" className="flex flex-row text-center relative">
 				<div className="w-1/2">
-					<input type="file" name="image" id="image" />
-					<img className="w-full aspect-video" src="https://pixy.org/src/487/4870083.jpg" alt="" />
+					<input type="file" name="image" id="image" onChange={handleImageChange} />
+					{previewImage ? (
+						<img className="w-full aspect-video object-contain" src={previewImage} alt="" />
+					) : (
+						<img className="w-full aspect-video" src="img/default.png" alt="" />
+					)}
 				</div>
 				<div className="w-1/2 flex flex-col">
 					<textarea
