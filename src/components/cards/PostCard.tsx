@@ -136,7 +136,11 @@ function PostCard({
 							{previewLikes &&
 								previewLikes.map((like: Instalike.Like, index) => {
 									if (previewLikes.length === 1 && isLiked === false) {
-										return <span key={like.id}>{like.owner.userName} a aimé</span>;
+										return (
+											<span key={like.id}>
+												{like.owner.userName} {t('likes.liked')}
+											</span>
+										);
 									} else if (
 										previewLikes.length > 1 &&
 										previewLikes.length <= 3 &&
@@ -145,7 +149,11 @@ function PostCard({
 										if (index != previewLikes.length - 1) {
 											return <span key={like.id}>{like.owner.userName}, </span>;
 										} else {
-											return <span key={like.id}>{like.owner.userName} ont aimé</span>;
+											return (
+												<span key={like.id}>
+													{like.owner.userName} {t('likes.likedPlural')}
+												</span>
+											);
 										}
 									} else if (previewLikes.length > 3 && isLiked === false) {
 										if (index < 1) {
@@ -153,7 +161,8 @@ function PostCard({
 										} else if (index === 2) {
 											return (
 												<span key={like.id}>
-													{like.owner.userName} et {likeNumber - 2} autres ont aimé
+													{like.owner.userName} {t('likes.and')} {likeNumber - 2}{' '}
+													{t('likes.likedOthersPlural')}
 												</span>
 											);
 										}
@@ -163,7 +172,12 @@ function PostCard({
 										if (index != previewLikes.length - 1) {
 											return <span key={like.id}>{like.owner.userName}, </span>;
 										} else {
-											return <span key={like.id}>{like.owner.userName} et Vous ont aimé</span>;
+											return (
+												<span key={like.id}>
+													{like.owner.userName} {t('likes.and')} {t('likes.you')}{' '}
+													{t('likes.likedPlural')}
+												</span>
+											);
 										}
 									} else if (likeNumber > 3 && isLiked === true) {
 										if (index < 2) {
@@ -171,16 +185,29 @@ function PostCard({
 										} else if (index === 2) {
 											return (
 												<span key={like.id}>
-													{like.owner.userName}, Vous et {likeNumber - 4} autres ont aimé
+													{like.owner.userName}, {t('likes.you')} {t('likes.and')}{' '}
+													{likeNumber - 4} {t('likes.likedOthersPlural')}
 												</span>
 											);
 										}
 									}
 								})}
 
-							{previewLikes.length === 0 && isLiked === true ? <span>Vous avez aimé</span> : ''}
+							{previewLikes.length === 0 && isLiked === true ? (
+								<span>
+									{t('likes.you')} {t('likes.youLiked')}
+								</span>
+							) : (
+								''
+							)}
 
-							{previewLikes.length === 0 && isLiked === false ? <span>Personne a aimé</span> : ''}
+							{previewLikes.length === 0 && isLiked === false ? (
+								<span>
+									{t('likes.nobody')} {t('likes.liked')}
+								</span>
+							) : (
+								''
+							)}
 						</div>
 					</div>
 					<button className="mb-4 py-2 px-4">

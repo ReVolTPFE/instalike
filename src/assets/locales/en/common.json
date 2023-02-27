@@ -22,5 +22,14 @@
 	},
 	"errors": {
 		"login": "You entered invalid credentials"
+	},
+	"likes": {
+		"you": "You",
+		"nobody": "Nobody",
+		"liked": "liked",
+		"youLiked": "liked",
+		"and": "and",
+		"likedPlural": "liked",
+		"likedOthersPlural": "others liked"
 	}
 }

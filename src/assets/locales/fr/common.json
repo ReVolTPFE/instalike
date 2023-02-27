@@ -22,5 +22,14 @@
 	},
 	"errors": {
 		"login": "Vous avez entré de mauvais identifiants"
+	},
+	"likes": {
+		"you": "Vous",
+		"nobody": "Personne",
+		"liked": "a aimé",
+		"youLiked": "avez aimé",
+		"and": "et",
+		"likedPlural": "ont aimé",
+		"likedOthersPlural": "autres ont aimé"
 	}
 }
