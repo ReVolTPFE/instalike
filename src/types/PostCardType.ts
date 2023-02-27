@@ -1,3 +1,5 @@
+import { Instalike } from '@jmetterrothan/instalike';
+
 export type PostCardType = {
 	id: number;
 	description?: string;
@@ -10,4 +12,5 @@ export type PostCardType = {
 	userId: number;
 	likesCount: number;
 	commentsCount: number;
+	previewLikes: Instalike.Like[];
 };

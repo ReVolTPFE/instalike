@@ -47,3 +47,11 @@ main {
 .dark-mode .dark-mode-like-btn .text-red-500 {
 	color: #ef4444 !important;
 }
+
+#likeBtn #peopleWhoLiked {
+	display: none;
+}
+
+#likeBtn:hover #peopleWhoLiked {
+	display: block;
+}

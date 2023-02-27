@@ -36,6 +36,7 @@ function FeedBlock() {
 								userId={post.owner.id}
 								likesCount={post.likesCount}
 								commentsCount={post.commentsCount}
+								previewLikes={post.previewLikes}
 							/>
 						);
 					})}

@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
+import { Instalike } from '@jmetterrothan/instalike';
 import moment from 'moment';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -22,6 +24,7 @@ function PostCard({
 	userId,
 	likesCount,
 	commentsCount,
+	previewLikes,
 }: PostCardType) {
 	const { t } = useTranslation();
 
@@ -42,7 +45,7 @@ function PostCard({
 	}
 
 	function copyPostLink() {
-		navigator.clipboard.writeText('http://127.0.0.1:5173/post/' + id);
+		navigator.clipboard.writeText('/post/' + id);
 	}
 
 	function likePost() {
@@ -87,7 +90,7 @@ function PostCard({
 								{t('actions.unfollow')}
 							</Link>
 							<Link
-								to="/post/id"
+								to={'/post/' + id}
 								className="font-sans font-semibold block text-sm my-1 p-1 rounded cursor-pointer hover:bg-gray-200"
 							>
 								{t('actions.seePost')}
@@ -116,14 +119,70 @@ function PostCard({
 				<p className="m-4 text-gray-500">{description}</p>
 
 				<div>
-					<button
-						onClick={likePost}
-						className="mx-4 mb-4 bg-gray-200 rounded-full py-2 px-4 dark-mode-like-btn"
-					>
-						<i className={`fa-solid fa-heart ${isLiked ? 'text-red-500' : ''}`}>
-							<span className={`ml-2 ${isLiked ? 'text-red-500' : ''}`}>{likeNumber}</span>
-						</i>
-					</button>
+					<div id="likeBtn" className="relative inline-block mx-4">
+						<button
+							onClick={likePost}
+							className="mb-4 bg-gray-200 rounded-full py-2 px-4 dark-mode-like-btn"
+						>
+							<i className={`fa-solid fa-heart ${isLiked ? 'text-red-500' : ''}`}>
+								<span className={`ml-2 ${isLiked ? 'text-red-500' : ''}`}>{likeNumber}</span>
+							</i>
+						</button>
+
+						<div
+							id="peopleWhoLiked"
+							className="absolute left-0 p-2 bg-white border rounded-lg border-gray-200 z-10"
+						>
+							{previewLikes &&
+								previewLikes.map((like: Instalike.Like, index) => {
+									if (previewLikes.length === 1 && isLiked === false) {
+										return <span key={like.id}>{like.owner.userName} a aimé</span>;
+									} else if (
+										previewLikes.length > 1 &&
+										previewLikes.length <= 3 &&
+										isLiked === false
+									) {
+										if (index != previewLikes.length - 1) {
+											return <span key={like.id}>{like.owner.userName}, </span>;
+										} else {
+											return <span key={like.id}>{like.owner.userName} ont aimé</span>;
+										}
+									} else if (previewLikes.length > 3 && isLiked === false) {
+										if (index < 1) {
+											return <span key={like.id}>{like.owner.userName}, </span>;
+										} else if (index === 2) {
+											return (
+												<span key={like.id}>
+													{like.owner.userName} et {likeNumber - 2} autres ont aimé
+												</span>
+											);
+										}
+									}
+
+									if (previewLikes.length > 0 && likeNumber <= 3 && isLiked === true) {
+										if (index != previewLikes.length - 1) {
+											return <span key={like.id}>{like.owner.userName}, </span>;
+										} else {
+											return <span key={like.id}>{like.owner.userName} et Vous ont aimé</span>;
+										}
+									} else if (likeNumber > 3 && isLiked === true) {
+										if (index < 2) {
+											return <span key={like.id}>{like.owner.userName}, </span>;
+										} else if (index === 2) {
+											return (
+												<span key={like.id}>
+													{like.owner.userName}, Vous et {likeNumber - 4} autres ont aimé
+												</span>
+											);
+										}
+									}
+								})}
+
+							{previewLikes.length === 0 && isLiked === true ? <span>Vous avez aimé</span> : ''}
+
+							{previewLikes.length === 0 && isLiked === false ? <span>Personne a aimé</span> : ''}
+						</div>
+					</div>
 					<button className="mb-4 py-2 px-4">
 						<i className="fa-regular fa-comment-dots">
 							<span className="ml-2">{commentsCount}</span>
