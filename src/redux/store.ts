@@ -6,7 +6,7 @@ import instalikeApi from '../instalikeApi';
 import authReducer from './auth/reducer';
 import discoverReducer from './discover/reducer';
 import feedReducer from './feed/reducer';
-import likeReducer from './post/reducer';
+import likeReducer from './postLikes/reducer';
 import userSuggestionsReducer from './user/reducer';
 
 const rootReducer = combineReducers({

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
-import { fetchPostLikeAsync, fetchPostUnlikeAsync } from '../../redux/post/thunks';
+import { fetchPostLikeAsync, fetchPostUnlikeAsync } from '../../redux/postLikes/thunks';
 import { fetchPostUserSuggestionsRemoveContactAsync } from '../../redux/user/thunks';
 
 import useAppDispatch from '../../hooks/useAppDispatch';
