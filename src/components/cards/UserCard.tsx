@@ -1,19 +1,27 @@
-import { fetchPostUserSuggestionsAddContactAsync } from '../../redux/user/thunks';
+import { useState } from 'react';
+
+import {
+	fetchPostUserSuggestionsAddContactAsync,
+	fetchPostUserSuggestionsRemoveContactAsync,
+} from '../../redux/user/thunks';
 
 import useAppDispatch from '../../hooks/useAppDispatch';
 
 import { UserCardType } from '../../types/UserCardType';
 
-interface UserCardProps extends UserCardType {
-	onAddFriend: any;
-}
+function UserCard({ id, suggestionId = 0, fullName }: UserCardType) {
+	const [added, setAdded] = useState(false);
 
-function UserCard({ id, suggestionId = 0, fullName, onAddFriend }: UserCardProps) {
 	const dispatch = useAppDispatch();
 
 	function handleClick() {
-		dispatch(fetchPostUserSuggestionsAddContactAsync(id));
-		onAddFriend();
+		if (added === false) {
+			dispatch(fetchPostUserSuggestionsAddContactAsync(id));
+			setAdded(true);
+		} else {
+			dispatch(fetchPostUserSuggestionsRemoveContactAsync(id));
+			setAdded(false);
+		}
 	}
 
 	return (
@@ -26,7 +34,11 @@ function UserCard({ id, suggestionId = 0, fullName, onAddFriend }: UserCardProps
 			<div className="relative">
 				<img className="rounded-full w-full" src="img/avatar.webp" alt="" />
 				<button onClick={handleClick}>
-					<i className="fa-solid fa-plus absolute bottom-0 right-0 text-lg hover:bg-gray-200 py-1 px-2 text-center rounded-full bg-white cursor-pointer dark-mode-plus"></i>
+					{added === false ? (
+						<i className="fa-solid fa-plus absolute bottom-0 right-0 text-lg hover:bg-gray-200 py-1 px-2 text-center rounded-full bg-white cursor-pointer dark-mode-plus"></i>
+					) : (
+						<i className="fa-solid fa-check absolute bottom-0 right-0 text-lg hover:bg-blue-400 py-1 px-2 text-center rounded-full bg-blue-500 cursor-pointer"></i>
+					)}
 				</button>
 			</div>
 
