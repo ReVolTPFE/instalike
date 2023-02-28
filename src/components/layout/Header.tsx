@@ -8,6 +8,7 @@ import { logoutAsync } from '../../redux/auth/thunks';
 import Language from '../../enums/Language';
 
 import '../../i18n';
+import PostForm from '../forms/PostForm';
 
 function Header() {
 	const { t, i18n } = useTranslation();
@@ -15,6 +16,26 @@ function Header() {
 	const [moreInfo, setMoreInfo] = useState(false);
 	const [language, setLanguage] = useState(Language.FR);
 	const [moreInfoMobile, setMoreInfoMobile] = useState(false);
+
+	const [postFormState, setPostFormState] = useState(false);
+
+	const body = document.getElementById('body');
+	const fileInput = document.getElementById('imageFiles');
+
+	function onPostFormChange() {
+		window.scrollTo(0, 0);
+		body.classList.toggle('stop-scrolling');
+		setPostFormState(true);
+	}
+
+	function togglePostForm() {
+		if (postFormState === false) {
+			fileInput.click();
+		} else {
+			body.classList.toggle('stop-scrolling');
+			setPostFormState(false);
+		}
+	}
 
 	function toggleMoreInfo() {
 		setMoreInfo(!moreInfo);
@@ -55,7 +76,7 @@ function Header() {
 							<i className="text-2xl hover:bg-gray-200 py-1 px-2 text-center rounded fa-regular fa-compass"></i>
 						</Link>
 					</button>
-					<button className="hidden md:inline-block mx-4">
+					<button onClick={togglePostForm} className="hidden md:inline-block mx-4">
 						<i className="text-2xl hover:bg-gray-200 py-1 px-2 text-center rounded fa-solid fa-plus"></i>
 					</button>
 					<button onClick={toggleMoreInfo} className="hidden md:inline-block mx-4 relative">
@@ -108,7 +129,7 @@ function Header() {
 							<i className="text-2xl hover:bg-gray-200 py-1 px-2 text-center rounded fa-regular fa-compass"></i>
 						</Link>
 					</button>
-					<button className="md:hidden mx-4">
+					<button onClick={togglePostForm} className="md:hidden mx-4">
 						<i className="text-2xl hover:bg-gray-200 py-1 px-2 text-center rounded fa-solid fa-plus"></i>
 					</button>
 					<button onClick={toggleMoreInfoMobile} className="md:hidden mx-4 relative">
@@ -145,6 +166,12 @@ function Header() {
 					</button>
 				</nav>
 			</header>
+
+			{postFormState == true ? (
+				<PostForm togglePostForm={togglePostForm} showed={true} onPostFormChange={onPostFormChange} />
+			) : (
+				<PostForm togglePostForm={togglePostForm} showed={false} onPostFormChange={onPostFormChange} />
+			)}
 		</>
 	);
 }
