@@ -26,7 +26,7 @@ function DiscoverBlock() {
 							<PhotoCard
 								key={post.id}
 								id={post.id}
-								imgUrl={post.resources[0].src}
+								imgUrl={post.resources}
 								liked={post.viewerHasLiked}
 								likesCount={post.likesCount}
 								commentsCount={post.commentsCount}

@@ -21,7 +21,7 @@ import CommentForm from '../forms/CommentForm';
 function PostCard({
 	id,
 	description = '',
-	imgUrl = 'https://png.pngtree.com/back_origin_pic/00/06/05/09a27b971263bbfe983a315a2591cc75.jpg',
+	imgUrl,
 	fullName,
 	location = '',
 	commentStatus = true,
@@ -42,6 +42,21 @@ function PostCard({
 	const [isLiked, setIsLiked] = useState(liked);
 	const [likeNumber, setLikeNumber] = useState(likesCount);
 	const [isFollowing, setIsFollowing] = useState(isFollowedByViewer);
+
+	const numberOfImg = imgUrl.length;
+	const [imgNumber, setImgNumber] = useState(0);
+
+	function previousImg() {
+		if (imgNumber > 0) {
+			setImgNumber(imgNumber - 1);
+		}
+	}
+
+	function nextImg() {
+		if (imgNumber < numberOfImg - 1) {
+			setImgNumber(imgNumber + 1);
+		}
+	}
 
 	function toggleMoreInfo() {
 		setMoreInfo(!moreInfo);
@@ -93,7 +108,7 @@ function PostCard({
 						</p>
 					</div>
 
-					{isFollowing === false ? (
+					{isFollowing === false && isViewer === false ? (
 						<button onClick={onFollow} className="mx-4 p-2 rounded bg-gray-200 text-black">
 							{t('actions.follow')}
 						</button>
@@ -102,14 +117,14 @@ function PostCard({
 					)}
 				</div>
 
-				<button onClick={toggleMoreInfo} className="py-1 px-4 hover:bg-gray-200 rounded relative">
+				<button onClick={toggleMoreInfo} className="py-1 px-4 hover:bg-gray-200 rounded relative z-10">
 					<i className="text-xl fa-solid fa-ellipsis-vertical">
 						<div
 							className={`bg-white border border-gray-200 rounded-md p-2 absolute right-0 mt-4 ${
 								moreInfo ? '' : 'hidden'
 							}`}
 						>
-							{isFollowing === true ? (
+							{isFollowing === true && isViewer === false ? (
 								<Link
 									onClick={onUnfollow}
 									to="#"
@@ -149,13 +164,36 @@ function PostCard({
 				</button>
 			</div>
 
-			{/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
-			<img
-				onDoubleClick={likePost}
-				className="cursor-pointer w-full h-full object-cover"
-				src={imgUrl}
-				alt="Post photo"
-			/>
+			<div className="relative h-96">
+				{numberOfImg > 1 && imgNumber > 0 ? (
+					<button
+						className="absolute top-1/2 left-0 bg-black bg-opacity-50 rounded text-center ml-4 p-2"
+						onClick={previousImg}
+					>
+						<i className="fa-solid fa-chevron-left text-white text-3xl"></i>
+					</button>
+				) : (
+					''
+				)}
+				{numberOfImg > 1 && imgNumber < numberOfImg - 1 ? (
+					<button
+						className="absolute top-1/2 right-0 bg-black bg-opacity-50 rounded text-center mr-4 p-2"
+						onClick={nextImg}
+					>
+						<i className="fa-solid fa-chevron-right text-white text-3xl"></i>
+					</button>
+				) : (
+					''
+				)}
+
+				{/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
+				<img
+					onDoubleClick={likePost}
+					className="cursor-pointer w-full h-full object-cover"
+					src={imgUrl[imgNumber].src}
+					alt="Post photo"
+				/>
+			</div>
 
 			<div>
 				<p className="m-4 text-gray-500">{description}</p>

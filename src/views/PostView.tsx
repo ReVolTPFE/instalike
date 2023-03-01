@@ -30,7 +30,7 @@ function PostView() {
 					<PostCard
 						id={post.id}
 						description={post.caption}
-						imgUrl={post.resources[0].src}
+						imgUrl={post.resources}
 						fullName={post.owner.fullName}
 						location={post.location}
 						commentStatus={post.hasCommentsDisabled}

@@ -3,7 +3,7 @@ import { Instalike } from '@jmetterrothan/instalike';
 export type PostCardType = {
 	id: number;
 	description?: string;
-	imgUrl: string;
+	imgUrl: Instalike.Media[];
 	fullName: string;
 	location?: string;
 	commentStatus?: boolean;
