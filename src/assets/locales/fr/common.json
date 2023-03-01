@@ -7,7 +7,8 @@
 		"changeLanguage": "Go to English",
 		"seePost": "Voir la publication",
 		"copyLink": "Copier le lien",
-		"delete": "Supprimer"
+		"delete": "Supprimer",
+		"publish": "Publier"
 	},
 	"form": {
 		"email": "Email",
@@ -16,7 +17,8 @@
 		"submit": "Valider",
 		"postDescription": "Ecrivez une description...",
 		"postLocalisation": "Localisation",
-		"postCommentingStatus": "Désactiver les commentaires"
+		"postCommentingStatus": "Désactiver les commentaires",
+		"comment": "Ajouter un commentaire..."
 	},
 	"title": {
 		"postForm": "Créer un nouveau post"
@@ -32,5 +34,8 @@
 		"and": "et",
 		"likedPlural": "ont aimé",
 		"likedOthersPlural": "autres ont aimé"
+	},
+	"comments": {
+		"deactivated": "Les commentaires ont été désactivés par l'auteur pour ce post."
 	}
 }
