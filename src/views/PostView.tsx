@@ -40,6 +40,8 @@ function PostView() {
 						likesCount={post.likesCount}
 						commentsCount={post.commentsCount}
 						previewLikes={post.previewLikes}
+						isFollowedByViewer={post.owner.isFollowedByViewer}
+						isViewer={post.owner.isViewer}
 					/>
 				)}
 			</main>

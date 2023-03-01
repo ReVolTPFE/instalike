@@ -5,12 +5,18 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
+import { fetchDeletePostAsync } from '../../redux/post/thunks';
 import { fetchPostLikeAsync, fetchPostUnlikeAsync } from '../../redux/postLikes/thunks';
-import { fetchPostUserSuggestionsRemoveContactAsync } from '../../redux/user/thunks';
+import {
+	fetchPostUserSuggestionsAddContactAsync,
+	fetchPostUserSuggestionsRemoveContactAsync,
+} from '../../redux/user/thunks';
 
 import useAppDispatch from '../../hooks/useAppDispatch';
 
 import { PostCardType } from '../../types/PostCardType';
+
+import CommentForm from '../forms/CommentForm';
 
 function PostCard({
 	id,
@@ -25,6 +31,8 @@ function PostCard({
 	likesCount,
 	commentsCount,
 	previewLikes,
+	isFollowedByViewer,
+	isViewer,
 }: PostCardType) {
 	const { t } = useTranslation();
 
@@ -33,6 +41,7 @@ function PostCard({
 	const [moreInfo, setMoreInfo] = useState(false);
 	const [isLiked, setIsLiked] = useState(liked);
 	const [likeNumber, setLikeNumber] = useState(likesCount);
+	const [isFollowing, setIsFollowing] = useState(isFollowedByViewer);
 
 	function toggleMoreInfo() {
 		setMoreInfo(!moreInfo);
@@ -40,12 +49,22 @@ function PostCard({
 
 	const dispatch = useAppDispatch();
 
+	function onFollow() {
+		dispatch(fetchPostUserSuggestionsAddContactAsync(userId));
+		setIsFollowing(true);
+	}
+
 	function onUnfollow() {
 		dispatch(fetchPostUserSuggestionsRemoveContactAsync(userId));
+		setIsFollowing(false);
 	}
 
 	function copyPostLink() {
 		navigator.clipboard.writeText('/post/' + id);
+	}
+
+	function deletePost() {
+		dispatch(fetchDeletePostAsync(id));
 	}
 
 	function likePost() {
@@ -73,6 +92,14 @@ function PostCard({
 							{formattedDate}
 						</p>
 					</div>
+
+					{isFollowing === false ? (
+						<button onClick={onFollow} className="mx-4 p-2 rounded bg-gray-200 text-black">
+							{t('actions.follow')}
+						</button>
+					) : (
+						''
+					)}
 				</div>
 
 				<button onClick={toggleMoreInfo} className="py-1 px-4 hover:bg-gray-200 rounded relative">
@@ -82,13 +109,28 @@ function PostCard({
 								moreInfo ? '' : 'hidden'
 							}`}
 						>
-							<Link
-								onClick={onUnfollow}
-								to="#"
-								className="font-sans font-semibold block text-sm my-1 p-1 rounded cursor-pointer hover:bg-red-200 text-red-500"
-							>
-								{t('actions.unfollow')}
-							</Link>
+							{isFollowing === true ? (
+								<Link
+									onClick={onUnfollow}
+									to="#"
+									className="font-sans font-semibold block text-sm my-1 p-1 rounded cursor-pointer hover:bg-red-200 text-red-500"
+								>
+									{t('actions.unfollow')}
+								</Link>
+							) : (
+								''
+							)}
+							{isViewer === true ? (
+								<Link
+									onClick={deletePost}
+									to="/feed"
+									className="font-sans font-semibold block text-sm my-1 p-1 rounded cursor-pointer hover:bg-red-200 text-red-500"
+								>
+									{t('actions.delete')}
+								</Link>
+							) : (
+								''
+							)}
 							<Link
 								to={'/post/' + id}
 								className="font-sans font-semibold block text-sm my-1 p-1 rounded cursor-pointer hover:bg-gray-200"
@@ -215,6 +257,17 @@ function PostCard({
 							<span className="ml-2">{commentsCount}</span>
 						</i>
 					</button>
+				</div>
+
+				<div className="flex justify-center p-4">
+					{commentStatus === true ? (
+						<p>{t('comments.deactivated')}</p>
+					) : (
+						<div className="w-full flex flex-row items-center justify-between">
+							<img className="w-14 h-14 rounded-full mr-4" src="/img/avatar.webp" alt="" />
+							<CommentForm />
+						</div>
+					)}
 				</div>
 			</div>
 		</div>
