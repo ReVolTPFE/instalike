@@ -111,7 +111,7 @@ function PostForm({ togglePostForm, showed, onPostFormChange }: PostFormProps) {
 						{previewImage ? (
 							<img className="w-full aspect-video object-contain" src={previewImage} alt="" />
 						) : (
-							<img className="w-full aspect-video" src="img/default.png" alt="" />
+							<img className="w-full aspect-video" src="/img/default.png" alt="" />
 						)}
 					</div>
 					<div className="w-1/2 flex flex-col">

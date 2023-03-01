@@ -6,7 +6,8 @@
 		"logout": "Logout",
 		"changeLanguage": "Basculer vers Français",
 		"seePost": "See publication",
-		"copyLink": "Copy link"
+		"copyLink": "Copy link",
+		"delete": "Delete"
 	},
 	"form": {
 		"email": "Email",

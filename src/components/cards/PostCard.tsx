@@ -61,10 +61,10 @@ function PostCard({
 	}
 
 	return (
-		<div className="my-8 rounded-xl border border-gray-300" id={`post-${id}`}>
+		<div className="my-8 rounded-xl border border-gray-300 w-full" id={`post-${id}`}>
 			<div className="flex flex-row justify-between items-center py-4 px-6">
 				<div className="flex flex-row items-center relative">
-					<img className="w-14 h-14 rounded-full mr-4" src="img/avatar.webp" alt="" />
+					<img className="w-14 h-14 rounded-full mr-4" src="/img/avatar.webp" alt="" />
 					<div>
 						<h2 className="text-lg font-bold">{fullName}</h2>
 						<p>

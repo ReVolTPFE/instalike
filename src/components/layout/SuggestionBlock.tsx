@@ -1,5 +1,5 @@
 import { Instalike } from '@jmetterrothan/instalike';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import { fetchGetUserSuggestionsAsync } from '../../redux/user/thunks';
 

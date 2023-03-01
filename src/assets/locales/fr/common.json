@@ -6,7 +6,8 @@
 		"logout": "Déconnexion",
 		"changeLanguage": "Go to English",
 		"seePost": "Voir la publication",
-		"copyLink": "Copier le lien"
+		"copyLink": "Copier le lien",
+		"delete": "Supprimer"
 	},
 	"form": {
 		"email": "Email",

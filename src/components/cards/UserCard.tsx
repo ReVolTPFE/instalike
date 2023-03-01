@@ -32,7 +32,7 @@ function UserCard({ id, suggestionId = 0, fullName }: UserCardType) {
 			${suggestionId >= 6 ? 'hidden' : ''}`}
 		>
 			<div className="relative">
-				<img className="rounded-full w-full" src="img/avatar.webp" alt="" />
+				<img className="rounded-full w-full" src="/img/avatar.webp" alt="" />
 				<button onClick={handleClick}>
 					{added === false ? (
 						<i className="fa-solid fa-plus absolute bottom-0 right-0 text-lg hover:bg-gray-200 py-1 px-2 text-center rounded-full bg-white cursor-pointer dark-mode-plus"></i>
