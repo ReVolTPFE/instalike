@@ -62,7 +62,7 @@ function Header() {
 
 	return (
 		<>
-			<header className="w-full h-20 fixed top-0 left-0 flex flex-row justify-between items-center py-4 px-4 md:px-16 border-b border-b-gray-300 bg-white z-10">
+			<header className="w-full h-20 fixed top-0 left-0 flex flex-row justify-between items-center py-4 px-4 md:px-16 border-b border-b-gray-300 bg-white z-50">
 				<h1 className="text-4xl font-semibold">Instalike</h1>
 
 				<nav>
@@ -117,7 +117,7 @@ function Header() {
 				</nav>
 			</header>
 
-			<header className="md:hidden fixed bottom-0 left-0 w-screen h-16 border-t border-t-gray-200 bg-white z-10">
+			<header className="md:hidden fixed bottom-0 left-0 w-screen h-16 border-t border-t-gray-200 bg-white z-50">
 				<nav className="flex flex-row justify-evenly items-center my-2">
 					<button className="md:hidden mx-4">
 						<Link to={'/feed'}>
