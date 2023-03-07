@@ -13,6 +13,7 @@ export type PostCardType = {
 	likesCount: number;
 	commentsCount: number;
 	previewLikes: Instalike.Like[];
+	previewComments: Instalike.Comment[];
 	isFollowedByViewer: boolean;
 	isViewer: boolean;
 };

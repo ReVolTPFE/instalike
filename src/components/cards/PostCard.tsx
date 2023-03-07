@@ -31,6 +31,7 @@ function PostCard({
 	likesCount,
 	commentsCount,
 	previewLikes,
+	previewComments,
 	isFollowedByViewer,
 	isViewer,
 }: PostCardType) {
@@ -297,7 +298,7 @@ function PostCard({
 					</button>
 				</div>
 
-				<div className="flex justify-center p-4">
+				<div className="flex justify-center p-4 border-y">
 					{commentStatus === true ? (
 						<p>{t('comments.deactivated')}</p>
 					) : (
@@ -307,6 +308,23 @@ function PostCard({
 						</div>
 					)}
 				</div>
+
+				{commentsCount > 0 && commentStatus === false
+					? previewComments.map((comment: Instalike.Comment) => {
+							return (
+								<div key={comment.id} className="flex flex-row items-start w-full p-4">
+									<img className="w-8 h-8 rounded-full mr-4" src="/img/avatar.webp" alt="" />
+									<div className="flex flex-col items-start justify-center">
+										<p>
+											<span className="font-bold">{fullName} </span>
+											<span>{comment.text}</span>
+										</p>
+										<p>{moment(comment.updatedAt).utc().format('DD-MM-YYYY')}</p>
+									</div>
+								</div>
+							);
+					  })
+					: ''}
 			</div>
 		</div>
 	);

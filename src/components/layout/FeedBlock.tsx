@@ -37,6 +37,7 @@ function FeedBlock() {
 								likesCount={post.likesCount}
 								commentsCount={post.commentsCount}
 								previewLikes={post.previewLikes}
+								previewComments={post.previewComments}
 								isFollowedByViewer={post.owner.isFollowedByViewer}
 								isViewer={post.owner.isViewer}
 							/>
