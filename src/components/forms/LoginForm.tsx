@@ -35,7 +35,13 @@ function LoginForm() {
 	return (
 		<div>
 			{redirect && <Navigate to="/feed" />}
-			<form action="" method="post" className="flex flex-col text-center login-form" onSubmit={handleSubmit}>
+			<form
+				action=""
+				method="post"
+				className="flex flex-col text-center login-form"
+				onSubmit={handleSubmit}
+				data-cy="loginForm"
+			>
 				<input
 					className="m-2 p-2 rounded bg-gray-200 focus:bg-white focus:border-blue-500"
 					type="email"
