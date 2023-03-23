@@ -159,7 +159,7 @@ function Header() {
 									to="#"
 									className="font-sans font-semibold block text-sm my-1 p-1 rounded cursor-pointer hover:bg-red-200 text-red-500"
 								>
-									Logout
+									{t('actions.logout')}
 								</Link>
 							</div>
 						</i>

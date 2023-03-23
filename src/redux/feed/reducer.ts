@@ -1,14 +1,20 @@
-import { Instalike } from '@jmetterrothan/instalike';
+import { SetStateAction } from 'react';
 import { Reducer } from 'redux';
 
 import { FeedAction, FEED } from './actions';
 
 type FeedState = {
-	posts: Instalike.Post[];
+	posts: {
+		nextCursor: SetStateAction<string | any>;
+		items: [];
+	};
 };
 
 const initialState: FeedState = {
-	posts: [],
+	posts: {
+		nextCursor: '',
+		items: [],
+	},
 };
 
 const feedReducer: Reducer<FeedState, FeedAction> = (state = initialState, action) => {

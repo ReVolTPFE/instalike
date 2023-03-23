@@ -8,7 +8,8 @@
 		"seePost": "See publication",
 		"copyLink": "Copy link",
 		"delete": "Delete",
-		"publish": "Publish"
+		"publish": "Publish",
+		"loadMore": "Load more posts"
 	},
 	"form": {
 		"email": "Email",
@@ -21,7 +22,8 @@
 		"comment": "Add a comment..."
 	},
 	"title": {
-		"postForm": "Create new post"
+		"postForm": "Create new post",
+		"allPostsLoaded": "You are all caught up"
 	},
 	"errors": {
 		"login": "You entered invalid credentials"

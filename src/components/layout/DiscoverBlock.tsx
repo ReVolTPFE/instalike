@@ -1,41 +1,93 @@
 import { Instalike } from '@jmetterrothan/instalike';
-import { useEffect } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { fetchDiscoverUserAsync } from '../../redux/discover/thunks';
-
-import useAppDispatch from '../../hooks/useAppDispatch';
-import useDiscover from '../../hooks/useDiscover';
-
+import { ACCESS_TOKEN_KEY } from '../../instalikeApi';
 import PhotoCard from '../cards/PhotoCard';
 
 function DiscoverBlock() {
-	const dispatch = useAppDispatch();
+	const [feedCursor, setFeedCursor] = useState(null);
+	const [feed, setFeed] = useState(null);
+	const [isEndOfFeed, setIsEndOfFeed] = useState(false);
+
+	const { t } = useTranslation();
+
+	const token = window.localStorage.getItem(ACCESS_TOKEN_KEY);
+
+	const config = {
+		method: 'get',
+		url: 'https://api.instalike.fr/v1/users/me/feed?cursor=' + feedCursor,
+		headers: {
+			Authorization: 'Bearer ' + token,
+		},
+	};
 
 	useEffect(() => {
-		dispatch(fetchDiscoverUserAsync());
+		axios
+			.request(config)
+			.then((response) => {
+				setFeed(response.data.items);
+
+				if (response.data.nextCursor !== null) {
+					setFeedCursor(response.data.nextCursor);
+				} else {
+					setIsEndOfFeed(true);
+				}
+			})
+			.catch((error) => {
+				console.error(error);
+			});
 	}, []);
 
-	const posts = useDiscover();
+	function getNextPosts() {
+		axios
+			.request(config)
+			.then((response) => {
+				setFeed((prevState) => prevState.concat(response.data.items));
+
+				if (response.data.nextCursor !== null) {
+					setFeedCursor(response.data.nextCursor);
+				} else {
+					setIsEndOfFeed(true);
+				}
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	}
 
 	return (
 		<main className="w-full md:mx-auto md:px-8 lg:px-40 py-8">
 			<section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 relative px-4">
-				{posts &&
-					posts.map((post: Instalike.Post) => {
-						return (
-							<PhotoCard
-								key={post.id}
-								id={post.id}
-								imgUrl={post.resources}
-								liked={post.viewerHasLiked}
-								likesCount={post.likesCount}
-								commentsCount={post.commentsCount}
-							/>
-						);
-					})}
+				{feed !== null
+					? feed.map((post: Instalike.Post) => {
+							return (
+								<PhotoCard
+									key={post.id}
+									id={post.id}
+									imgUrl={post.resources}
+									liked={post.viewerHasLiked}
+									likesCount={post.likesCount}
+									commentsCount={post.commentsCount}
+								/>
+							);
+					  })
+					: ''}
 			</section>
 
-			<h2 className="text-xl font-semibold text-center text-gray-600 mt-8">You are all caught up!</h2>
+			{isEndOfFeed === false ? (
+				<div className="flex justify-center items-center">
+					<button
+						className="text-xl font-semibold text-center text-gray-600 mt-8 p-2 rounded-lg bg-gray-200"
+						onClick={getNextPosts}
+					>
+						{t('actions.loadMore')}
+					</button>
+				</div>
+			) : (
+				<h2 className="text-xl font-semibold text-center text-gray-600 mt-8">{t('title.allPostsLoaded')}</h2>
+			)}
 		</main>
 	);
 }

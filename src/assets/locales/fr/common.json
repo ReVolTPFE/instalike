@@ -8,7 +8,8 @@
 		"seePost": "Voir la publication",
 		"copyLink": "Copier le lien",
 		"delete": "Supprimer",
-		"publish": "Publier"
+		"publish": "Publier",
+		"loadMore": "Charger plus de posts"
 	},
 	"form": {
 		"email": "Email",
@@ -21,7 +22,8 @@
 		"comment": "Ajouter un commentaire..."
 	},
 	"title": {
-		"postForm": "Créer un nouveau post"
+		"postForm": "Créer un nouveau post",
+		"allPostsLoaded": "Vous avez chargé tous les posts"
 	},
 	"errors": {
 		"login": "Vous avez entré de mauvais identifiants"
