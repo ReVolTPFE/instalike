@@ -17,7 +17,7 @@ function DiscoverBlock() {
 
 	const config = {
 		method: 'get',
-		url: 'https://api.instalike.fr/v1/users/me/feed?cursor=' + feedCursor,
+		url: 'https://api.instalike.fr/v1/posts?cursor=' + feedCursor,
 		headers: {
 			Authorization: 'Bearer ' + token,
 		},
