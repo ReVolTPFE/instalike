@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import { Instalike } from '@jmetterrothan/instalike';
+import axios from 'axios';
 import moment from 'moment';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -16,7 +17,9 @@ import useAppDispatch from '../../hooks/useAppDispatch';
 
 import { PostCardType } from '../../types/PostCardType';
 
+import { ACCESS_TOKEN_KEY } from '../../instalikeApi';
 import CommentForm from '../forms/CommentForm';
+import CommentDeleteBtn from '../others/CommentDeleteBtn';
 
 function PostCard({
 	id,
@@ -43,9 +46,13 @@ function PostCard({
 	const [isLiked, setIsLiked] = useState(liked);
 	const [likeNumber, setLikeNumber] = useState(likesCount);
 	const [isFollowing, setIsFollowing] = useState(isFollowedByViewer);
+	const [comments, setComments] = useState(previewComments);
+	const [commentsShown, setCommentsShown] = useState(false);
 
 	const numberOfImg = imgUrl.length;
 	const [imgNumber, setImgNumber] = useState(0);
+
+	const token = window.localStorage.getItem(ACCESS_TOKEN_KEY);
 
 	function previousImg() {
 		if (imgNumber > 0) {
@@ -93,6 +100,29 @@ function PostCard({
 			setIsLiked(false);
 			setLikeNumber(likeNumber - 1);
 		}
+	}
+
+	function refreshComments() {
+		const config = {
+			method: 'get',
+			url: 'https://api.instalike.fr/v1/posts/' + id + '/comments',
+			headers: {
+				Authorization: 'Bearer ' + token,
+			},
+		};
+
+		axios
+			.request(config)
+			.then((response) => {
+				setComments(response.data.items);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	}
+
+	function showComments() {
+		setCommentsShown(!commentsShown);
 	}
 
 	return (
@@ -291,40 +321,52 @@ function PostCard({
 							)}
 						</div>
 					</div>
-					<button className="mb-4 py-2 px-4">
+					<button onClick={showComments} className="mb-4 py-2 px-4">
 						<i className="fa-regular fa-comment-dots">
 							<span className="ml-2">{commentsCount}</span>
 						</i>
 					</button>
 				</div>
 
-				<div className="flex justify-center p-4 border-y">
-					{commentStatus === true ? (
-						<p>{t('comments.deactivated')}</p>
-					) : (
-						<div className="w-full flex flex-row items-center justify-between">
-							<img className="w-14 h-14 rounded-full mr-4" src="/img/avatar.webp" alt="" />
-							<CommentForm />
-						</div>
-					)}
-				</div>
+				<div className={`${commentsShown === false ? 'hidden' : ''}`}>
+					<div className="flex justify-center p-4 border-y">
+						{commentStatus === true ? (
+							<p>{t('comments.deactivated')}</p>
+						) : (
+							<div className="w-full flex flex-row items-center justify-between">
+								<img className="w-14 h-14 rounded-full mr-4" src="/img/avatar.webp" alt="" />
+								<CommentForm postId={id} refreshComments={refreshComments} />
+							</div>
+						)}
+					</div>
 
-				{commentsCount > 0 && commentStatus === false
-					? previewComments.map((comment: Instalike.Comment) => {
-							return (
-								<div key={comment.id} className="flex flex-row items-start w-full p-4">
-									<img className="w-8 h-8 rounded-full mr-4" src="/img/avatar.webp" alt="" />
-									<div className="flex flex-col items-start justify-center">
-										<p>
-											<span className="font-bold">{fullName} </span>
-											<span>{comment.text}</span>
-										</p>
-										<p>{moment(comment.updatedAt).utc().format('DD-MM-YYYY')}</p>
+					{commentsCount > 0 && commentStatus === false
+						? comments.map((comment: Instalike.Comment) => {
+								return (
+									<div key={comment.id} className="flex flex-row items-start w-full p-4">
+										<img className="w-8 h-8 rounded-full mr-4" src="/img/avatar.webp" alt="" />
+										<div className="flex flex-col items-start justify-center">
+											<p>
+												<span className="font-bold">{comment.owner.fullName} </span>
+												<span>{comment.text}</span>
+											</p>
+											<p>{moment(comment.updatedAt).utc().format('DD-MM-YYYY')}</p>
+										</div>
+
+										{comment.owner.isViewer === true ? (
+											<CommentDeleteBtn
+												postId={id}
+												commentId={comment.id}
+												refreshComments={refreshComments}
+											/>
+										) : (
+											''
+										)}
 									</div>
-								</div>
-							);
-					  })
-					: ''}
+								);
+						  })
+						: ''}
+				</div>
 			</div>
 		</div>
 	);

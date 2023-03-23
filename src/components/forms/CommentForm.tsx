@@ -1,20 +1,37 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { fetchNewCommentAsync } from '../../redux/comment/thunks';
+
 import useAppDispatch from '../../hooks/useAppDispatch';
 
 import '../../i18n';
 
-function CommentForm() {
+type commentProps = {
+	postId: number;
+	refreshComments: any;
+};
+
+function CommentForm({ postId, refreshComments }: commentProps) {
 	const { t } = useTranslation();
 
 	const dispatch = useAppDispatch();
 
 	const [comment, setComment] = useState('');
 
-	function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+	const formData = {
+		text: '',
+		mentions: [],
+	};
+
+	async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault();
-		// dispatch();
+
+		formData.text = comment;
+
+		await dispatch(fetchNewCommentAsync(postId, formData));
+
+		location.reload();
 	}
 
 	return (

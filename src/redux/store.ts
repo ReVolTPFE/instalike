@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 
 import instalikeApi from '../instalikeApi';
 import authReducer from './auth/reducer';
+import commentReducer from './comment/reducer';
 import discoverReducer from './discover/reducer';
 import feedReducer from './feed/reducer';
 import postReducer from './post/reducer';
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
 	like: likeReducer,
 	discover: discoverReducer,
 	post: postReducer,
+	comment: commentReducer,
 });
 
 const middleware: Middleware[] = [];
