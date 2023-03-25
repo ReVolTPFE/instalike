@@ -42,17 +42,19 @@ function PostForm({ togglePostForm, showed, onPostFormChange }: PostFormProps) {
 
 	const dispatch = useAppDispatch();
 
-	const fileInput = document.getElementById('imageFiles');
-	const locationInput = document.getElementById('location');
-	const captionInput = document.getElementById('caption');
-	const commentsStatusInput = document.getElementById('commentsStatus');
+	const fileInput = document.getElementById('imageFiles') as HTMLInputElement;
+	const locationInput = document.getElementById('location') as HTMLInputElement;
+	const captionInput = document.getElementById('caption') as HTMLInputElement;
+	const commentsStatusInput = document.getElementById('commentsStatus') as HTMLInputElement;
 
 	function handleSubmit(e: Event) {
 		e.preventDefault();
 
-		for (let i = 0; i < fileInput.files.length; i++) {
-			if (i < 6) {
-				postData.resources.push(fileInput.files[i]);
+		if (fileInput.files !== null) {
+			for (let i = 0; i < fileInput.files.length; i++) {
+				if (i < 6) {
+					postData.resources.push(fileInput.files[i]);
+				}
 			}
 		}
 

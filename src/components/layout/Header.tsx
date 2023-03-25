@@ -25,16 +25,22 @@ function Header() {
 
 	function onPostFormChange() {
 		window.scrollTo(0, 0);
-		body.classList.toggle('stop-scrolling');
-		setPostFormState(true);
+		if (body !== null) {
+			body.classList.toggle('stop-scrolling');
+			setPostFormState(true);
+		}
 	}
 
 	function togglePostForm() {
 		if (postFormState === false) {
-			fileInput.click();
+			if (fileInput !== null) {
+				fileInput.click();
+			}
 		} else {
-			body.classList.toggle('stop-scrolling');
-			setPostFormState(false);
+			if (body !== null) {
+				body.classList.toggle('stop-scrolling');
+				setPostFormState(false);
+			}
 		}
 	}
 
@@ -48,7 +54,7 @@ function Header() {
 
 	const dispatch = useDispatch();
 
-	const logout = (event: React.FormEvent<HTMLFormElement>) => {
+	const logout = (event: React.MouseEvent<HTMLAnchorElement>) => {
 		event.preventDefault();
 		dispatch(logoutAsync());
 	};
