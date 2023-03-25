@@ -5,6 +5,7 @@ import { FeedAction, FEED } from './actions';
 
 type FeedState = {
 	posts: {
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		nextCursor: SetStateAction<string | any>;
 		items: [];
 	};

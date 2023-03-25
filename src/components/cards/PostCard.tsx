@@ -83,7 +83,7 @@ function PostCard({
 	}
 
 	function copyPostLink() {
-		navigator.clipboard.writeText('/post/' + id);
+		navigator.clipboard.writeText('https://candid-kitsune-73fe3d.netlify.app/post/' + id);
 	}
 
 	function deletePost() {

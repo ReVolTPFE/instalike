@@ -10,6 +10,7 @@ import Header from '../components/layout/Header';
 import useGetPost from '../hooks/useGetPost';
 
 function PostView() {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const params: string | any = useParams();
 	const id = parseInt(params.id);
 
@@ -17,6 +18,7 @@ function PostView() {
 
 	useEffect(() => {
 		dispatch(fetchGetPostAsync(id));
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const post = useGetPost();

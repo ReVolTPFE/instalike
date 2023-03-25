@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Language from '../enums/Language';
+
 import '../i18n';
 import instalikeApi from '../instalikeApi';
 

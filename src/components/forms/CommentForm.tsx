@@ -9,10 +9,9 @@ import '../../i18n';
 
 type commentProps = {
 	postId: number;
-	refreshComments: any;
 };
 
-function CommentForm({ postId, refreshComments }: commentProps) {
+function CommentForm({ postId }: commentProps) {
 	const { t } = useTranslation();
 
 	const dispatch = useAppDispatch();

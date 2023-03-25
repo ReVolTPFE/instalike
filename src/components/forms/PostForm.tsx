@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { PostData } from '@jmetterrothan/instalike';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -17,8 +18,6 @@ interface PostFormProps {
 
 function PostForm({ togglePostForm, showed, onPostFormChange }: PostFormProps) {
 	const { t } = useTranslation();
-
-	const body = document.getElementById('body');
 
 	const [previewImage, setPreviewImage] = useState('');
 

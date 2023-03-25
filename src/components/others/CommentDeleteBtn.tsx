@@ -6,6 +6,7 @@ import { fetchDeleteCommentAsync } from '../../redux/comment/thunks';
 
 import useAppDispatch from '../../hooks/useAppDispatch';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function CommentDeleteBtn({ postId, commentId, refreshComments }: any) {
 	const [isOpen, setIsOpen] = useState(false);
 

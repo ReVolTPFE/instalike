@@ -13,6 +13,7 @@ function SuggestionBlock() {
 
 	useEffect(() => {
 		dispatch(fetchGetUserSuggestionsAsync());
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const users = useUserSuggestions();
