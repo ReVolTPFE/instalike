@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { logoutAsync } from '../../redux/auth/thunks';
+import { AppThunkDispatch } from '../../redux/types';
 
 import Language from '../../enums/Language';
 
@@ -52,7 +53,7 @@ function Header() {
 		setMoreInfoMobile(!moreInfoMobile);
 	}
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppThunkDispatch>();
 
 	const logout = (event: React.MouseEvent<HTMLAnchorElement>) => {
 		event.preventDefault();

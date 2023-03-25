@@ -8,7 +8,7 @@ import PhotoCard from '../cards/PhotoCard';
 
 function DiscoverBlock() {
 	const [feedCursor, setFeedCursor] = useState(null);
-	const [feed, setFeed] = useState(null);
+	const [feed, setFeed] = useState([]);
 	const [isEndOfFeed, setIsEndOfFeed] = useState(false);
 
 	const { t } = useTranslation();

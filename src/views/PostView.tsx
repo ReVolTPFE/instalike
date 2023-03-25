@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
 
 import { fetchGetPostAsync } from '../redux/post/thunks';
+import { AppThunkDispatch } from '../redux/types';
 
 import PostCard from '../components/cards/PostCard';
 import Header from '../components/layout/Header';
@@ -14,7 +15,7 @@ function PostView() {
 	const params: string | any = useParams();
 	const id = parseInt(params.id);
 
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppThunkDispatch>();
 
 	useEffect(() => {
 		dispatch(fetchGetPostAsync(id));

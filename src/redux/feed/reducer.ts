@@ -24,9 +24,9 @@ const feedReducer: Reducer<FeedState, FeedAction> = (state = initialState, actio
 			return {
 				...state,
 				posts: action.payload,
-			};
+			} as FeedState;
 		default:
-			return state;
+			return state as FeedState;
 	}
 };
 

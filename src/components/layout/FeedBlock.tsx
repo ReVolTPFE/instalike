@@ -9,7 +9,7 @@ import PostCard from '../cards/PostCard';
 
 function FeedBlock() {
 	const [feedCursor, setFeedCursor] = useState(null);
-	const [feed, setFeed] = useState(null);
+	const [feed, setFeed] = useState([]);
 	const [isEndOfFeed, setIsEndOfFeed] = useState(false);
 
 	const { t } = useTranslation();
@@ -62,7 +62,7 @@ function FeedBlock() {
 	return (
 		<>
 			<section>
-				{feed !== null
+				{feed.length > 0
 					? feed.map((post: Instalike.Post) => {
 							return (
 								<PostCard

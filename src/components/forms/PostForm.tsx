@@ -47,7 +47,7 @@ function PostForm({ togglePostForm, showed, onPostFormChange }: PostFormProps) {
 	const captionInput = document.getElementById('caption') as HTMLInputElement;
 	const commentsStatusInput = document.getElementById('commentsStatus') as HTMLInputElement;
 
-	function handleSubmit(e: Event) {
+	function handleSubmit(e: React.MouseEvent<HTMLInputElement>) {
 		e.preventDefault();
 
 		if (fileInput.files !== null) {

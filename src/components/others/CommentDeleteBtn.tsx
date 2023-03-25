@@ -7,7 +7,7 @@ import { fetchDeleteCommentAsync } from '../../redux/comment/thunks';
 import useAppDispatch from '../../hooks/useAppDispatch';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function CommentDeleteBtn({ postId, commentId, refreshComments }: any) {
+function CommentDeleteBtn({ postId, commentId }: any) {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const { t } = useTranslation();
@@ -20,8 +20,7 @@ function CommentDeleteBtn({ postId, commentId, refreshComments }: any) {
 
 	async function deleteComment() {
 		await dispatch(fetchDeleteCommentAsync(postId, commentId));
-
-		refreshComments();
+		location.reload();
 	}
 
 	return (
