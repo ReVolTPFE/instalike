@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/mouse-events-have-key-events */
 import { Instalike } from '@jmetterrothan/instalike';
-import axios from 'axios';
 import moment from 'moment';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -46,12 +45,14 @@ function PostCard({
 	const [isLiked, setIsLiked] = useState(liked);
 	const [likeNumber, setLikeNumber] = useState(likesCount);
 	const [isFollowing, setIsFollowing] = useState(isFollowedByViewer);
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [comments, setComments] = useState(previewComments);
 	const [commentsShown, setCommentsShown] = useState(false);
 
 	const numberOfImg = imgUrl.length;
 	const [imgNumber, setImgNumber] = useState(0);
 
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const token = window.localStorage.getItem(ACCESS_TOKEN_KEY);
 
 	function previousImg() {
