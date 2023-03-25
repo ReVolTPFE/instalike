@@ -102,25 +102,6 @@ function PostCard({
 		}
 	}
 
-	function refreshComments() {
-		const config = {
-			method: 'get',
-			url: 'https://api.instalike.fr/v1/posts/' + id + '/comments',
-			headers: {
-				Authorization: 'Bearer ' + token,
-			},
-		};
-
-		axios
-			.request(config)
-			.then((response) => {
-				setComments(response.data.items);
-			})
-			.catch((error) => {
-				console.error(error);
-			});
-	}
-
 	function showComments() {
 		setCommentsShown(!commentsShown);
 	}
@@ -335,7 +316,7 @@ function PostCard({
 						) : (
 							<div className="w-full flex flex-row items-center justify-between">
 								<img className="w-14 h-14 rounded-full mr-4" src="/img/avatar.webp" alt="" />
-								<CommentForm postId={id} refreshComments={refreshComments} />
+								<CommentForm postId={id} />
 							</div>
 						)}
 					</div>
@@ -354,11 +335,7 @@ function PostCard({
 										</div>
 
 										{comment.owner.isViewer === true ? (
-											<CommentDeleteBtn
-												postId={id}
-												commentId={comment.id}
-												refreshComments={refreshComments}
-											/>
+											<CommentDeleteBtn postId={id} commentId={comment.id} />
 										) : (
 											''
 										)}
