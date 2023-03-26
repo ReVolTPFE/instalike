@@ -84,7 +84,7 @@ function PostCard({
 	}
 
 	function copyPostLink() {
-		navigator.clipboard.writeText('https://candid-kitsune-73fe3d.netlify.app/post/' + id);
+		navigator.clipboard.writeText('https://instalike.steiner.etu.mmi-unistra.fr/post/' + id);
 	}
 
 	function deletePost() {
